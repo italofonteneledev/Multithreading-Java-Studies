@@ -4,17 +4,17 @@ package io.github.italofonteneledev;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     static void main() throws InterruptedException {
-        Thread thread = new Thread(() -> {
-            System.out.println("We are now in thread " + Thread.currentThread().getName());
-            System.out.println("Current thread priority is " + Thread.currentThread().getPriority());
-        });
-        thread.setName("New Worker Thread");
-        thread.setPriority(Thread.MAX_PRIORITY);
+        Thread thread = new NewThread();
 
-        System.out.println("We are in thread: " + Thread.currentThread().getName() + " before starting a new thread");
         thread.start();
-        System.out.println("We are in thread: " + Thread.currentThread().getName() + " after starting a new thread");
 
-        Thread.sleep(10000);
     }
+
+    private static class NewThread extends Thread {
+        @Override
+        public void run() {
+            System.out.println("Hello from " + Thread.currentThread().getName());
+        }
+    }
+
 }
